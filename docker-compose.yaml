@@ -1,0 +1,14 @@
+version: '3.8'
+services:
+  application:
+    container_name: product-cake
+    image: app/jwt:1.0.0-SNAPSHOT
+    ports:
+      - "8081:8081"
+    environment:
+      MP_JWT_VERIFY_PUBLICKEY_LOCATION: /jwt/publicKey.pem
+      SMALLRYE_JWT_SIGN_KEY_LOCATION: /jwt/privateKey.pem
+    volumes:
+      - type: bind
+        source: ./jwt
+        target: /jwt
